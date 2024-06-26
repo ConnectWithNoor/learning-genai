@@ -2,7 +2,9 @@ import { OpenAI } from "openai";
 import dotenv from "dotenv";
 dotenv.config();
 
-const ai = new OpenAI(process.env.OPENAI_API_KEY);
+const ai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 const main = async () => {
   // define a prompt
@@ -14,4 +16,9 @@ const main = async () => {
     messages: [{ role: "user", content: prompt }],
     model: "gpt-3.5-turbo",
   });
+
+  // print the response
+  console.log(completion.choices[0].message.content);
 };
+
+main();
