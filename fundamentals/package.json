@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node -r ts-node/register --env-file=.env src/index.ts"
   },
@@ -10,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "openai": "^4.52.0"
+    "openai": "^4.52.0",
+    "tiktoken": "^1.0.15"
   },
   "devDependencies": {
     "@types/node": "^20.14.8",
+    "dotenv": "^16.4.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.2"
   }
