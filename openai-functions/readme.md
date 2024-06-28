@@ -2,7 +2,7 @@
 
 ### 1. **OpenAI Functions**
 
-The source code is a continuation of the source code inside basic directory.
+The application is a terminal based chat application. The source code is a continuation of the source code inside basic directory.
 
 #### 1.1 What are functions calling and what is the need of it
 
@@ -20,6 +20,22 @@ The source code is a continuation of the source code inside basic directory.
 - https://platform.openai.com/docs/guides/function-calling
 
 #### 1.2 How to setup function calling
+
+- First we have to write a custom function, and then we have to pass the function to the model along with the prompt. Each time. We have to check when the model calls the function,(the model doesn't call the function but based on the description of the function, model awaits the function response) it is when we have to call the function manually and send back the response of the function to the model. Throughout all this, we have to maintain the context where the messages sequential manners the most.
+
+- Steps:
+
+  1. Write a custom function which results in a value being returned. (getCurrentDateAndTime) in our case.
+
+  2. fill out the `tools` and `tools_choices` values for the model with the function relative details.
+
+  3. Push the response from the model to context to maintain the chat history sequencially.
+
+  4. Check if the model has asked to call the function.
+
+  5. if so, call the function, and add the response of the function to the context to maintain the chat history sequencially.
+
+  6. Again call the model with all the updated context and it will generate the approriate answer back to you based on the context history.
 
 #### 1.3 Sending parameters to the function
 
