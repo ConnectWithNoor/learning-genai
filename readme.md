@@ -11,6 +11,6 @@
 4. "start": "node -r ts-node/register --env-file=.env src/index.ts"
 ```
 
-### fundamentals directory
+### basic directory
 
 - Directory contains the fundamental concepts of Open AI and Generative AI as well as basic chat application powered by Open AI, where the GPT model is sales and marketing expert and can help you with your queries. The Directory has a `readme.md` file that contains all the important concepts. Also, the code snippets can also be found isnide the directory.
