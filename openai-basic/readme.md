@@ -27,6 +27,7 @@
   1. **system** - To setup context/behavor of model. Provide guidelines on how the conversation should proceed. You can use this to instruct the model to maintain the formal tone throughout the conversation, or to specify rules like, avoid centain topics.
   2. **user** - To represent human user, the prompts that user asks in a form of question/query or making a statement.
   3. **assistant** - To respresent the model itself, responding to the prompt based on the context set by the system.
+  4. **tool** - to respresent the response from the function calling that the model requires to product it's next output. (check openai-function directory code for more understanding)
 
 #### 1.5 What is a temperature
 

@@ -20,13 +20,29 @@ const encoder = encoding_for_model("gpt-3.5-turbo"); // to get the token length 
 const context: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
   {
     role: "system",
-    content: "Act like Donald Trump",
+    content: `Act like Donald Trump. Don't keep the message empty. Always reply with appropriate responses even when you have to make function callings. For the function calling, you have to follow certain rules:
+      
+      1. For the Date and Time function: 
+        1.1. If the user asks for the location that is a city, state or anything, you are supported to pass the country name as the function argument.
+        1.2. The full name of the country should be passed. Ex: Pakistan, United States, United Arab Emirates.
+        `,
   },
 ];
 
-// a function to get the current date and time
-const getCurrentDateAndTime = () => {
-  return new Date().toLocaleString();
+// a function to get the current date and time of any location
+const getCurrentDateAndTime = (location: string) => {
+  switch (location.toLowerCase().trim()) {
+    case "pakistan":
+      return new Date().toLocaleString("en-PK", { timeZone: "Asia/Karachi" });
+    case "india":
+      return new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+    case "united states":
+      return new Date().toLocaleString("en-US", {
+        timeZone: "America/New_York",
+      });
+    default:
+      return new Date().toLocaleString();
+  }
 };
 
 async function createChat() {
@@ -42,6 +58,19 @@ async function createChat() {
         function: {
           name: FUNCTION_NAMES.GET_CURRENT_DATE_AND_TIME, // name of the custom function
           description: "Get the current date and time of any location", // description is important, as it allows the model to understand the function and help it make decision to when to call a function
+
+          // to add the parameters for the function,
+          parameters: {
+            type: "object",
+            properties: {
+              // name of parameter that is to pass along with it's details
+              location: {
+                type: "string",
+                description: "The location to get the current date and time",
+              },
+            },
+            required: ["location"], // required parameter
+          },
         },
       },
     ],
@@ -57,7 +86,11 @@ async function createChat() {
       response.choices[0].message.tool_calls![0].function.name ===
       FUNCTION_NAMES.GET_CURRENT_DATE_AND_TIME
     ) {
-      const functionResponse = getCurrentDateAndTime(); // calling the function
+      const argumentRaw =
+        response.choices[0].message.tool_calls![0].function.arguments; // getting the arguments passed to the function
+      const parsedArguments = JSON.parse(argumentRaw); // parsing the arguments to get the location
+      console.log(parsedArguments);
+      const functionResponse = getCurrentDateAndTime(parsedArguments.location); // calling the function
       // pushing the function response to the context with the role tool
       context.push({
         role: "tool",

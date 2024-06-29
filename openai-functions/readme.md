@@ -26,18 +26,25 @@ The application is a terminal based chat application. The source code is a conti
 - Steps:
 
   1. Write a custom function which results in a value being returned. (getCurrentDateAndTime) in our case.
-
   2. fill out the `tools` and `tools_choices` values for the model with the function relative details.
-
   3. Push the response from the model to context to maintain the chat history sequencially.
-
   4. Check if the model has asked to call the function.
-
   5. if so, call the function, and add the response of the function to the context to maintain the chat history sequencially.
-
   6. Again call the model with all the updated context and it will generate the approriate answer back to you based on the context history.
 
-#### 1.3 Sending parameters to the function
+#### 1.3 Sending Aurgments to the function parameters
+
+- It is a way of passing the aurgments to the function parameters. The model is intelligent enough to pass the aurgment to the function that is to call. You have to explicitly declare the type of aurgments that you want to pass it.
+
+- Steps:
+  1. Write the custom function which takes the number of parameters and returns a result.
+  2. Pass those parameter details to the model.
+  3. Check if the model has asked to call the function.
+  4. Get the function aurgement (raw) from the model response and parse it to get the actual object containing the aurgment.
+  5. Pass the aurgemnt to the function calling and get the response.
+  6. For better aurguments, use the system prompt (check code).
+  7. keep the context maintain sequencially (check 1.2 and source code)
+  8. Again call the model with all the updated context and it will generate the approriate answer back to you based on the context history.
 
 #### 1.4 working with multiple functions
 
