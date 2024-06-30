@@ -21,7 +21,7 @@ const context: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
 
      2. For the get trains between stations function: 
         2.1. only take the city names from the user, if user passes, country name, zip name or anything else, ask for the city name.
-        2.2. The full name of the city should be passed to the function aurgument. Ex: Karachi, Islamabad, Multan.
+        2.2. The full name of the city should be passed to the function argument. Ex: Karachi, Islamabad, Multan.
         
      3. For the reserve ticket function:
         3.1 If the user asks for the train name, you are supported to pass the train name as the function argument.

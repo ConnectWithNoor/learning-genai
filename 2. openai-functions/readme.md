@@ -43,7 +43,7 @@ The application is a terminal based chat application. The source code is a conti
   3. Check if the model has asked to call the function.
   4. Get the function aurgement (raw) from the model response and parse it to get the actual object containing the aurgment.
   5. Pass the aurgemnt to the function calling and get the response.
-  6. For better aurguments, use the system prompt (check code).
+  6. For better arguments, use the system prompt (check code).
   7. keep the context maintain sequencially (check 1.2 and source code)
   8. Again call the model with all the updated context and it will generate the approriate answer back to you based on the context history.
 
@@ -54,7 +54,7 @@ The application is a terminal based chat application. The source code is a conti
 - Steps:
   1. Give a prompt to the model that require multiple/parallel function. example `What is the time in Karachi and Kolkata` or `What is the time different between Karachi, Kolkata and Chicargo`. Such queries require multiple function callings for the model to be able to get the appropriate response.
   2. When such prompts are passed to the model, like usual, model responses with a finish reason of `tool_calls` which has an array of function calls.
-  3. We can loop over the array and check for which function has been asked to call and with what aurgument. Refer to 1.1 and 1.2
+  3. We can loop over the array and check for which function has been asked to call and with what argument. Refer to 1.1 and 1.2
 
 ### Imporatnt resources:
 
