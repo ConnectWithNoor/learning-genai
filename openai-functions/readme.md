@@ -16,7 +16,8 @@ The application is a terminal based chat application. The source code is a conti
 - The diagram shows how it works.
   ![How it works](image.png)
 
-- https://thenewstack.io/a-comprehensive-guide-to-function-calling-in-llms/
+- https://thenewstack.io/a-comprehensive-guide-to-function-calling-in-llms/ (for diagram understanding)
+- https://cookbook.openai.com/examples/how_to_call_functions_with_chat_models (for understandings)
 - https://platform.openai.com/docs/guides/function-calling
 
 #### 1.2 How to setup function calling
@@ -46,7 +47,14 @@ The application is a terminal based chat application. The source code is a conti
   7. keep the context maintain sequencially (check 1.2 and source code)
   8. Again call the model with all the updated context and it will generate the approriate answer back to you based on the context history.
 
-#### 1.4 working with multiple functions
+#### 1.4 working with multiple/parallel functions callings
+
+- Multple/Parallel function calling is an ability of the models by which they can get the data they are required to produce the relavenet output.
+
+- Steps:
+  1. Give a prompt to the model that require multiple/parallel function. example `What is the time in Karachi and Kolkata` or `What is the time different between Karachi, Kolkata and Chicargo`. Such queries require multiple function callings for the model to be able to get the appropriate response.
+  2. When such prompts are passed to the model, like usual, model responses with a finish reason of `tool_calls` which has an array of function calls.
+  3. We can loop over the array and check for which function has been asked to call and with what aurgument. Refer to 1.1 and 1.2
 
 ### Imporatnt resources:
 

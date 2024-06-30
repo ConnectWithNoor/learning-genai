@@ -9,7 +9,7 @@ const ai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const MAX_TOKENS = 200; // max token limit for the context to sent to the model.
+const MAX_TOKENS = 500; // max token limit for the context to sent to the model.
 const FUNCTION_NAMES = {
   // custom function names
   GET_CURRENT_DATE_AND_TIME: "getCurrentDateAndTime",
@@ -79,28 +79,31 @@ async function createChat() {
 
   context.push(response.choices[0].message); // pushing the response to the context array
 
-  // checking if the model has called the function
+  // checking if the model has request a function call.
   if (response.choices[0].finish_reason === "tool_calls") {
-    // checking if our custom date and time function is called by the model
-    if (
-      response.choices[0].message.tool_calls![0].function.name ===
-      FUNCTION_NAMES.GET_CURRENT_DATE_AND_TIME
-    ) {
-      const argumentRaw =
-        response.choices[0].message.tool_calls![0].function.arguments; // getting the arguments passed to the function
-      const parsedArguments = JSON.parse(argumentRaw); // parsing the arguments to get the location
-      console.log(parsedArguments);
-      const functionResponse = getCurrentDateAndTime(parsedArguments.location); // calling the function
-      // pushing the function response to the context with the role tool
-      context.push({
-        role: "tool",
-        content: functionResponse,
-        tool_call_id: response.choices[0].message.tool_calls![0].id,
-      });
+    // to handle multiple function calling we have to check for the tool_calls array in the response and loop over it to cover up each function call.
+    // this is also ideal to handle single multiple function calls as well since the tool_calls is always an array.
+    response.choices[0].message.tool_calls?.forEach(async (tool) => {
+      // checking if our custom date and time function is called by the model
+      if (tool.function.name === FUNCTION_NAMES.GET_CURRENT_DATE_AND_TIME) {
+        const argumentRaw = tool.function.arguments; // getting the raw arguments from the model.
+        const parsedArguments = JSON.parse(argumentRaw); // parsing the arguments
+        const functionResponse = await getCurrentDateAndTime(
+          parsedArguments.location // calling the function
+        );
 
-      createChat(); // calling the createChat function again with all the latest context including the function response
-    }
+        // pushing the function response to the context with the role tool
+        context.push({
+          role: "tool",
+          content: functionResponse,
+          tool_call_id: tool.id,
+        });
+      }
+    });
+
+    createChat(); // calling the createChat function again with all the latest context including the function response
   }
+
   if (response.choices[0].message.content) {
     console.log(`${response.choices[0].message.content}`);
   }
