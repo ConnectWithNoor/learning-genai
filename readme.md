@@ -21,7 +21,7 @@
 
 - Things covered:
   - function calling thoery and coding.
-  - sending aurguments to the functions. providing system prompt to proceed with accurate aurguments.
+  - sending arguments to the functions. providing system prompt to proceed with accurate arguments.
   - working with multiple/parallel functions callings
 
 ### 3 train-reservation-project
