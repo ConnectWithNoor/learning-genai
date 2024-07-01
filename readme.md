@@ -35,3 +35,7 @@
      I want to make the reserveation
      Get me the train that goes from lahore to karachi and make the reservation for passanger Noor Muhammad with CNIC 123132.
   ```
+
+### 4 openai-embedding-similarity-vector
+
+- Directory contains the explanation of embeddings, similarity, vectors and vector database in ML. The directory has a `readme.md` file that contains all the important concepts. Also, the code snippets can also be found inside the directory.
