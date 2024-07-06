@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node -r ts-node/register --env-file=.env src/faq-chatbot-chroma.ts"
+    "start": "node -r ts-node/register --env-file=.env src/faq-chatbot-pinecone.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@pinecone-database/pinecone": "^2.2.2",
     "chromadb": "^1.8.1",
     "openai": "^4.52.0"
   },

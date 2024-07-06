@@ -64,6 +64,60 @@
   - https://docs.trychroma.com/getting-started
   - https://www.npmjs.com/package/chromadb
 
+#### What is Pinecone?
+
+- Pinecone is a cloud-based (managed) vector database that is optimized for vector data. Pinecone is a fully managed service that provides a simple API to store, index, and search vector data at scale.
+
+- It provides all the features of chromadb as well as they are cloud based.
+
+- https://docs.pinecone.io/guides/get-started/quickstart
+
+#### What is an index in Pinecone?
+
+- Index is the top level organizational container of vector data. An index can accept, store, queries over the vector data is contains.
+
+- https://docs.pinecone.io/guides/indexes/understanding-indexes
+
+#### What is a namespace in Pinecone?
+
+- Namespace is a sub-organizational container within an index. It is used to group similar data with-in an index together. Queries and option operations are then limited to that one namespace, so different requests can search different subsets of your index.
+
+- Every index is made up of one or more namespaces. Every record exists in exactly one namespace.
+
+- https://docs.pinecone.io/guides/indexes/use-namespaces
+
+#### What is MetaData in Pinecone?
+
+- Pinecone lets you attach metadata key-value pairs, as key-value pairs in a JSON object where keys are strings and values can be of other types, to vectors in an index, and specify filter expressions when you query the index.
+
+- The metadata filters can be combined with AND and OR:
+
+  - $eq - Equal to (number, string, boolean)
+  - $ne - Not equal to (number, string, boolean)
+  - $gt - Greater than (number)
+  - $gte - Greater than or equal to (number)
+  - $lt - Less than (number)
+  - $lte - Less than or equal to (number)
+  - $in - In array (string or number)
+  - $nin - Not in array (string or number)
+  - $exists - Has the specified metadata field (boolean)
+
+- example query (example code is in python):
+
+```
+  index.query(
+    vector=[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
+    filter={ // here you can filter based on the metadata
+        "genre": {"$eq": "documentary"},
+        "year": 2019
+    },
+    top_k=1,
+    include_metadata=True
+)
+```
+
+- https://docs.pinecone.io/guides/data/filter-with-metadata
+
 ### Imporatnt resources:
 
 - MUST WATCH -> https://www.youtube.com/watch?v=8KrTO9bS91s

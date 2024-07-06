@@ -88,6 +88,6 @@ const main = async () => {
   console.log(query);
 };
 
-main();
+// main();
 
 // Check FAQ-Chatbot-ChromaDB for even better understandings.

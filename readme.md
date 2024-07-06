@@ -39,3 +39,7 @@
 ### 4 openai-embedding-similarity-vector
 
 - Directory contains the explanation of embeddings, similarity, vectors and vector database in ML. The directory has a `readme.md` file that contains all the important concepts. Also, the code snippets can also be found inside the directory.
+
+### 5 vector-db
+
+- Directory contains the explanation of vector databases, their importance, and how to use them. The vector databases used are ChromaDB and Pinecone. The directory has a `readme.md` file that contains all the important concepts. Also, the code snippets can also be found inside the directory.
