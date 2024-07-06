@@ -101,7 +101,7 @@ const queryEmbeddings = async (question: string) => {
 const responseUserWithOpenAI = async (relaventInfo: RecordMetadataValue) => {
   const openAiResponse = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
-    temperature: 0.2,
+    temperature: 0.2, // we want the response to be more relevant to our data provided
     messages: [
       {
         role: "system",
