@@ -43,3 +43,7 @@
 ### 5 vector-db
 
 - Directory contains the explanation of vector databases, their importance, and how to use them. The vector databases used are ChromaDB and Pinecone. The directory has a `readme.md` file that contains all the important concepts. Also, the code snippets can also be found inside the directory.
+
+### 6 langchain-rags
+
+- Directory contains the explanation of Langchain, it's importance, and how to use it. The directory has a `readme.md` file that contains all the important concepts. Also, the code snippets can also be found inside the directory.
