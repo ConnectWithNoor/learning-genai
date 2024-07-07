@@ -88,7 +88,7 @@ const queryEmbeddings = async (question: string) => {
     .namespace("faq-namespace")
     .query({
       vector: embedding,
-      topK: 1,
+      topK: 1, // get the top 1 result from the db
       includeMetadata: true,
       includeValues: true, //include the vector values
     });
