@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node -r ts-node/register --env-file=.env src/basic-rag.ts"
+    "start": "node -r ts-node/register --env-file=.env src/web-rag.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@langchain/community": "^0.2.17",
     "@pinecone-database/pinecone": "^2.2.2",
+    "cheerio": "^1.0.0-rc.12",
     "chromadb": "^1.8.1",
     "langchain": "^0.2.8",
     "openai": "^4.52.0"
