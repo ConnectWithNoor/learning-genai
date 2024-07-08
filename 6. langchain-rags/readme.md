@@ -7,6 +7,7 @@
 - RAGs
   - Basic Rag Application using hardcode data
   - RAG Application using Web parsing using Cheerio (come alternative are puppeteer, playwright)
+  - RAG Application with Vector DB using ChromaDB and PDF file
 
 #### 1.1 What is Langchain?
 
@@ -50,4 +51,5 @@
 - https://github.com/langchain-ai/langchainjs
 - https://js.langchain.com/v0.2/docs/integrations/chat/openai
 - https://js.langchain.com/v0.2/docs/integrations/document_loaders/web_loaders/web_cheerio/
+- https://js.langchain.com/v0.2/docs/integrations/document_loaders/file_loaders/pdf
 - https://js.langchain.com/v0.2/docs/how_to/recursive_text_splitter

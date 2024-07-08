@@ -2,10 +2,17 @@
 
 import { CheerioWebBaseLoader } from "@langchain/community/document_loaders/web/cheerio";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { OpenAIEmbeddings } from "@langchain/openai";
+import { ChatPromptTemplate } from "@langchain/core/prompts";
+import { OpenAIEmbeddings, ChatOpenAI } from "@langchain/openai";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 
 const question = "What lights the universe standard candles?";
+
+const model = new ChatOpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  modelName: "gpt-3.5-turbo",
+  temperature: 0.8,
+});
 
 // initialize the cheerio loader
 const loader = new CheerioWebBaseLoader(
@@ -21,6 +28,7 @@ const main = async () => {
   const splitter = new RecursiveCharacterTextSplitter({
     chunkSize: 350, // 350 characters per chunk
     chunkOverlap: 25, // new chunk starts from 25 characters before the end of the previous chunk
+    // separators: [".", "!", "?", "\n", "\r\n"] // OR use separators to split the text by chunks
   });
 
   const splittedDoc = await splitter.splitDocuments(docs);
@@ -40,10 +48,23 @@ const main = async () => {
   const result = await retriever.invoke(question);
   const outputResults = result.map((res) => res.pageContent);
 
-  //   add OPenAI here to get the answer in the structured way, currently skipping it as we are focusing on the basic rag
-  // get help from langchain-basic file for the OpenAI implementation
+  // build template for chat
+  const template = ChatPromptTemplate.fromMessages([
+    [
+      "system",
+      "Answer to users question based on the following context: {context}.",
+    ],
+    ["user", "{query}"],
+  ]);
 
-  console.log(outputResults);
+  const chain = template.pipe(model);
+
+  const response = await chain.invoke({
+    query: question,
+    context: outputResults,
+  });
+
+  console.log(response.content);
 };
 
 main();
