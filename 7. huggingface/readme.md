@@ -30,16 +30,37 @@
 - https://huggingface.co/docs/huggingface.js/en/index
 - https://huggingface.co/docs/huggingface.js/en/index#huggingfaceinference-examples
 
-#### 1.3 How to run Huggingface models locally?
+#### 1.3 How to run Huggingface models using APIs?
+
+- checkout the index.ts file inside the src directory. The code is itself explanatory.
+
+- Use have to add following code in your files:
+
+  ```
+      // add in package.json
+      "type": "commonjs", // or just remove this
+
+    // replace in package.json
+      "start": "node -r ts-node/register --env-file=.env src/transformer.ts"
+
+    // add in tsconfig.json
+      "module": "commonjs",
+  ```
+
+#### 1.4 How to run Huggingface models locally?
 
 - https://huggingface.co/docs/transformers.js/index
+
+- Checkout the transformer.ts file inside the src directory. The code is itself explanatory.
+
+- Note, not all models supports downloading to local. models compatible with ONNX can be locally run. Check the documentation of each model for more info.
 
 - @xenova/transformers libraty is required. check above doc for more info
 - the @xenova/transformers packages needs the following modification in the following files:
 
   ```
     // add in package.json
-      "type": "commonjs",
+      "type": "module",
 
     // replace in package.json
       "start": "node --loader ts-node/esm --env-file=.env src/transformer.ts"

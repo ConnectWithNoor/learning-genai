@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "start": "node --loader ts-node/esm --env-file=.env src/transformer.ts"
   },
@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@huggingface/inference": "^2.7.0",
-    "@xenova/transformers": "^2.17.2"
+    "@xenova/transformers": "^2.17.2",
+    "wavefile": "^11.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.8",
