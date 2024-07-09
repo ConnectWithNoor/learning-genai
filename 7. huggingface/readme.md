@@ -2,7 +2,14 @@
 
 ### In this Repo:
 
-- We will get the open source models from the huggingface library and use them for our projects using:
+- We will get the open source models from the huggingface library
+  - embedding (featureExtraction)
+  - translation
+  - translation with parameters
+  - textToSpeech
+  - question Answering
+  - Text to image generation
+- and use them for our projects using:
   - Huggingface APIs
   - By downloading models locally
 

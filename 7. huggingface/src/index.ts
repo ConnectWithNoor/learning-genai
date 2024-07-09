@@ -72,4 +72,22 @@ const generateQuestionAnswers = async () => {
   );
 };
 
-generateQuestionAnswers();
+// generate a text to image using a huggingface model
+const generateTextToImage = async () => {
+  // https://huggingface.co/stabilityai/stable-diffusion-2
+  const image = await inference.textToImage({
+    inputs: "A beautiful sunset in a jungle with a river flowing.",
+    model: "stabilityai/stable-diffusion-2",
+    // @ts-ignore
+    parameters: {
+      negative_prompt: "blurry", // I dont want blurry images
+    },
+  });
+  const buffer = Buffer.from(await image.arrayBuffer());
+
+  fs.writeFile(`${path.basename(__dirname)}/../assets/output.png`, buffer, () =>
+    console.log("image saved!")
+  );
+};
+
+generateTextToImage();
