@@ -11,7 +11,7 @@
   - Text to image generation
 - and use them for our projects using:
   - Huggingface APIs
-  - By downloading models locally
+  - By downloading models locally (APIs can be slow, to best way is to self hosted server)
 
 #### 1.1 What is Huggingface?
 
@@ -25,10 +25,29 @@
 
 - Last but not the least, it also provides a platform to deploy your models.
 
-### 1.2 HuggingFace JS Library
+#### 1.2 HuggingFace JS Library
 
 - https://huggingface.co/docs/huggingface.js/en/index
 - https://huggingface.co/docs/huggingface.js/en/index#huggingfaceinference-examples
+
+#### 1.3 How to run Huggingface models locally?
+
+- https://huggingface.co/docs/transformers.js/index
+
+- @xenova/transformers libraty is required. check above doc for more info
+- the @xenova/transformers packages needs the following modification in the following files:
+
+  ```
+    // add in package.json
+      "type": "commonjs",
+
+    // replace in package.json
+      "start": "node --loader ts-node/esm --env-file=.env src/transformer.ts"
+
+    // add in tsconfig.json
+      "module": "NodeNext",
+
+  ```
 
 ### Imporatnt resources:
 
