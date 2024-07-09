@@ -47,3 +47,7 @@
 ### 6 langchain-rags
 
 - Directory contains the explanation of Langchain, it's importance, and how to use it. The directory has a `readme.md` file that contains all the important concepts. Also, the code snippets can also be found inside the directory.
+
+### 7 huggingface
+
+- Directory contains the explanation of Huggingface, it's importance, and how to use it. The directory has a `readme.md` file that contains all the important concepts. Also, the code snippets can also be found inside the directory.
