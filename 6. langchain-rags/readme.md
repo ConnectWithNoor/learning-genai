@@ -27,11 +27,11 @@
 - `LangSmith` - A developer platform that lets you debug, test, evaluate, and monitor LLM applications.
 - and so on
 
-#### What are Prompt Templates?\
+#### 1.4 What are Prompt Templates?\
 
 - https://js.langchain.com/v0.2/docs/concepts/#prompt-templates
 
-#### What are RAGs (Retrieval Augmented Generation) ?
+#### 1.5 What are RAGs (Retrieval Augmented Generation) ?
 
 - It is the process of optimizing the output of a LLM, so it references an authoritative knowledge base outside of its training data sources before generating a response.
 
@@ -43,7 +43,10 @@
 
 ![RAGs](./assets/rag.png)
 
-- https://www.youtube.com/watch?v=tKPSmn-urB4
+- **Advance RAG Strategy**
+  ![RAGs](./assets/rag-adv.png)
+
+* https://www.youtube.com/watch?v=tKPSmn-urB4
 
 ### Imporatnt resources:
 
